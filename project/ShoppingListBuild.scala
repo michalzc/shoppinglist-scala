@@ -1,9 +1,10 @@
 import sbt._
 import sbt.Keys._
+import spray.revolver.RevolverPlugin.Revolver
 
 object ShoppingListBuild extends Build {
 
-    lazy val projectSettings = super.settings ++ Seq(
+    lazy val projectSettings = super.settings ++ Revolver.settings ++ Seq(
         name                        := "Shopping List Application",
         organization                := "michalz",
         version                     := "0.1-SNAPSHOT",
@@ -21,7 +22,7 @@ object ShoppingListBuild extends Build {
         libraryDependencies ++= Seq(
             "io.spray" %% "spray-can" % "1.3.2",
             "io.spray" %% "spray-routing" % "1.3.2",
-            "io.spray" %% "spray-json" % "1.3.1",
+            "org.json4s" %% "json4s-jackson" % "3.2.10",
             "com.typesafe.akka" %% "akka-actor" % "2.3.9",
             "com.typesafe.akka" %% "akka-slf4j" % "2.3.9",
             "ch.qos.logback" % "logback-classic" % "1.1.2",
