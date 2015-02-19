@@ -9,8 +9,6 @@ import spray.can.Http
 import scala.concurrent.duration._
 
 object ShoppingListApp extends App {
-
-
   implicit val system = ActorSystem("ShoppingListActorSystem")
   implicit val timeout = Timeout(5.seconds)
 
@@ -18,6 +16,7 @@ object ShoppingListApp extends App {
 
 
   IO(Http) ? Http.Bind(shoppingListHttpService, interface = "0.0.0.0", port = 8000)
+  sys.addShutdownHook(system.shutdown)
 }
 
 // vim: set ts=4 sw=4 et:

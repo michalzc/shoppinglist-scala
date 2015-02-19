@@ -13,11 +13,10 @@ class ShoppingListHttpService extends HttpServiceActor with ActorLogging {
       pathEndOrSingleSlash {
         complete("There will be api!")
       }
-    } ~
-    pathEnd {
-      get {
-        getFromResource("index.html")
-      }
+    } ~ pathPrefix("static") {
+      getFromResourceDirectory("META-INF/resources/webjars") ~ getFromResourceDirectory("static")
+    } ~ pathEndOrSingleSlash {
+      getFromResource("index.html")
     }
   }
 

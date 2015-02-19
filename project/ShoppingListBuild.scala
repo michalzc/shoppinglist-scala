@@ -36,6 +36,11 @@ object ShoppingListBuild extends Build {
           "ch.qos.logback" % "logback-classic" % "1.1.2",
           "org.slf4j" % "slf4j-api" % "1.7.10",
           "org.slf4j" % "log4j-over-slf4j" % "1.7.10",
+          //webjars
+          "org.webjars" % "angularjs" % "1.3.13",
+          "org.webjars" % "bootstrap" % "3.3.2-1",
+          "org.webjars" % "jquery" % "2.1.3",
+
 
 
           //test dependencies
