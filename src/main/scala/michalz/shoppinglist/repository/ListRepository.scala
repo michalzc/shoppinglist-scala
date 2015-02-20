@@ -16,10 +16,10 @@ trait ShoppingListRepository {
 
 trait MongoShoppingListRepository extends ShoppingListRepository {
   def mongoCollection: BSONCollection
-  implicit def executionContext: ExecutionContext
-  
-  override def findAll = 
+  implicit val executionContext: ExecutionContext
+
+  override def findAll =
     mongoCollection.find(BSONDocument()).cursor[ShoppingList].collect[scala.List]()
-  
-  
+
+
 }

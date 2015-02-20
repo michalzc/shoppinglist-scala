@@ -13,10 +13,10 @@ import scala.concurrent.duration._
 object ShoppingListApp extends App {
   implicit val system = ActorSystem("ShoppingListActorSystem")
   implicit val timeout = Timeout(5.seconds)
-  
+
   val mongoProvider = new MongoProvider
 
-  val shoppingListHttpService: ActorRef = system.actorOf(Props(new ShoppingListHttpService(mongoProvider)), "shoppingListHttpService")
+  val shoppingListHttpService: ActorRef = system.actorOf(ShoppingListHttpService.props(mongoProvider), "shoppingListHttpService")
 
 
   IO(Http) ? Http.Bind(shoppingListHttpService, interface = "0.0.0.0", port = 8000)
