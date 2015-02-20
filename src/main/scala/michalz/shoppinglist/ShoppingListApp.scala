@@ -1,18 +1,22 @@
-package michalz
+package michalz.shoppinglist
 
 import akka.actor.{ActorRef, ActorSystem, Props}
 import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout
-import michalz.services.ShoppingListHttpService
+import michalz.shoppinglist.repository.MongoProvider
+import michalz.shoppinglist.services.ShoppingListHttpService
 import spray.can.Http
+
 import scala.concurrent.duration._
 
 object ShoppingListApp extends App {
   implicit val system = ActorSystem("ShoppingListActorSystem")
   implicit val timeout = Timeout(5.seconds)
+  
+  val mongoProvider = new MongoProvider
 
-  val shoppingListHttpService: ActorRef = system.actorOf(Props[ShoppingListHttpService], "shoppingListHttpService")
+  val shoppingListHttpService: ActorRef = system.actorOf(Props(new ShoppingListHttpService(mongoProvider)), "shoppingListHttpService")
 
 
   IO(Http) ? Http.Bind(shoppingListHttpService, interface = "0.0.0.0", port = 8000)

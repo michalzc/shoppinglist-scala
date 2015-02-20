@@ -14,7 +14,7 @@ object ShoppingListBuild extends Build {
         organization := "michalz",
         version := "0.1-SNAPSHOT",
         scalaVersion := "2.11.5",
-        mainClass in(Compile, run) := Some("michalz.ShoppingListApp"),
+        mainClass in(Compile, run) := Some("michalz.shoppinglist.ShoppingListApp"),
         scalacOptions ++= Seq(
           "-feature",
           "-deprecation",
@@ -30,16 +30,18 @@ object ShoppingListBuild extends Build {
           "org.json4s" %% "json4s-jackson" % "3.2.10",
           "com.typesafe.akka" %% "akka-actor" % "2.3.9",
           "com.typesafe.akka" %% "akka-slf4j" % "2.3.9",
-          "org.reactivemongo" %% "reactivemongo" % "0.10.5.0.akka23" excludeAll (
-            ExclusionRule(organization = "org.apache.logging.log4j")
-            ),
-          "ch.qos.logback" % "logback-classic" % "1.1.2",
           "org.slf4j" % "slf4j-api" % "1.7.10",
-          "org.slf4j" % "log4j-over-slf4j" % "1.7.10",
+          "org.apache.logging.log4j" % "log4j-api" % "2.1",
+          "org.apache.logging.log4j" % "log4j-core" % "2.1",
+          "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.1",
+//          "org.apache.logging.log4j" % "log4j-to-slf4j" % "2.1",
+          "org.reactivemongo" %% "reactivemongo" % "0.10.5.0.akka23",
+//          "ch.qos.logback" % "logback-classic" % "1.1.2",
+//          "org.slf4j" % "log4j-over-slf4j" % "1.7.10",
           //webjars
-          "org.webjars" % "angularjs" % "1.3.13",
-          "org.webjars" % "bootstrap" % "3.3.2-1",
-          "org.webjars" % "jquery" % "2.1.3",
+//          "org.webjars" % "angularjs" % "1.3.13",
+//          "org.webjars" % "bootstrap" % "3.3.2-1",
+//          "org.webjars" % "jquery" % "2.1.3",
 
 
 
