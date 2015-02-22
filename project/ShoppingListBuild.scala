@@ -21,7 +21,9 @@ object ShoppingListBuild extends Build {
           "-explaintypes",
           "-target:jvm-1.8",
           "-unchecked",
-          "-encoding", "utf-8"
+          "-encoding", "utf-8",
+//          "-Xlog-implicits",
+          "-Xfatal-warnings"
         ),
         unmanagedResourceDirectories in Compile += file("src/main/webapp"),
         libraryDependencies ++= Seq(
