@@ -1,5 +1,6 @@
 package michalz.shoppinglist.domain
 
+
 /**
  * Created by michal on 20.02.15.
  */

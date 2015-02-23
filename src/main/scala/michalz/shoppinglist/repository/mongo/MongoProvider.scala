@@ -1,5 +1,4 @@
-package michalz.shoppinglist.repository
-
+package michalz.shoppinglist.repository.mongo
 
 import akka.actor.ActorSystem
 import com.typesafe.config.{Config, ConfigFactory}
@@ -14,11 +13,11 @@ import scala.collection.JavaConversions._
  */
 class MongoProvider(implicit system: ActorSystem) {
   import system.dispatcher
-  
+
   private val config: Config = ConfigFactory.load()
   private val driver = new MongoDriver(system)
   private val connection = driver.connection(config.getStringList("shoppinglist.mongo.hosts"))
   private val dataBase = connection(config.getString("shoppinglist.mongo.database"))
-  
+
   def getCollection(name: String): BSONCollection = dataBase.collection(name)
 }

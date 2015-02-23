@@ -14,12 +14,4 @@ trait ShoppingListRepository {
   def findAll: Future[List[ShoppingList]]
 }
 
-trait MongoShoppingListRepository extends ShoppingListRepository {
-  def mongoCollection: BSONCollection
-  implicit val executionContext: ExecutionContext
 
-  override def findAll =
-    mongoCollection.find(BSONDocument()).cursor[ShoppingList].collect[scala.List]()
-
-
-}

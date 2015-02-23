@@ -3,7 +3,7 @@ package michalz.shoppinglist.services
 import akka.actor.{Props, ActorLogging, Actor}
 import akka.pattern.pipe
 import michalz.shoppinglist.domain.ShoppingListMessages.{ShoppingLists, FindAll}
-import michalz.shoppinglist.repository.{MongoProvider, MongoShoppingListRepository}
+import michalz.shoppinglist.repository.mongo.{MongoShoppingListRepository, MongoProvider}
 
 import scala.concurrent.Future
 
@@ -15,14 +15,13 @@ class ShoppingListRepositoryActor(mongoProvider: MongoProvider) extends Actor wi
 
   def mongoCollection = mongoProvider.getCollection("shoppingLists")
 
-  implicit val executionContext = context.system.dispatcher
+  implicit val executionContext = context.dispatcher
 
   def receive = {
     case FindAll => {
-      log.info("Received request for all lists")
-      val future: Future[ShoppingLists] = findAll map (ShoppingLists)
-      log.info("I have a future: {}", future)
-      future pipeTo sender
+      log.info("Recived request from all lists")
+      findAll map (ShoppingLists) pipeTo sender
+      log.info("Result piped to sender")
     }
   }
 
