@@ -1,9 +1,9 @@
-package michalz.shoppinglist.services
+package michalz.whattobuy.services
 
 import akka.actor.{Actor, ActorLogging, Props}
 import akka.pattern.pipe
-import michalz.shoppinglist.domain.ShoppingListMessages.{FindAll, ShoppingLists}
-import michalz.shoppinglist.repository.mongo.{MongoProvider, MongoShoppingListRepository}
+import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, ShoppingLists}
+import michalz.whattobuy.repository.mongo.{MongoProvider, MongoShoppingListRepository}
 
 /**
  * @author mzajac

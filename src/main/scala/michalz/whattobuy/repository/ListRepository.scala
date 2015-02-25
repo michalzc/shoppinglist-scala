@@ -1,6 +1,6 @@
-package michalz.shoppinglist.repository
+package michalz.whattobuy.repository
 
-import michalz.shoppinglist.domain.ShoppingList
+import michalz.whattobuy.domain.ShoppingList
 
 import scala.collection.immutable.List
 import scala.concurrent.Future

@@ -1,11 +1,11 @@
-package michalz.shoppinglist.routes
+package michalz.whattobuy.routes
 
 import akka.actor.Actor
 import akka.pattern.ask
 import akka.util.Timeout
-import michalz.shoppinglist.domain.ShoppingListMessages.{FindAll, ShoppingLists}
-import michalz.shoppinglist.repository.mongo.MongoSupport
-import michalz.shoppinglist.services.ShoppingListRepositoryActor
+import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, ShoppingLists}
+import michalz.whattobuy.repository.mongo.MongoSupport
+import michalz.whattobuy.services.ShoppingListRepositoryActor
 import spray.routing.HttpService
 
 import scala.concurrent.duration._

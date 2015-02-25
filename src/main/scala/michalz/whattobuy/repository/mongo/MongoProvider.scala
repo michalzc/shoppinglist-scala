@@ -1,4 +1,4 @@
-package michalz.shoppinglist.repository.mongo
+package michalz.whattobuy.repository.mongo
 
 import akka.actor.ActorSystem
 import com.typesafe.config.{Config, ConfigFactory}

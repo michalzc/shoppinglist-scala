@@ -1,8 +1,8 @@
-package michalz.shoppinglist.services
+package michalz.whattobuy.services
 
 import akka.actor.Props
-import michalz.shoppinglist.repository.mongo.{MongoProvider, MongoSupport}
-import michalz.shoppinglist.routes.{Api, JsonSupport, RoutingSupport, Static}
+import michalz.whattobuy.repository.mongo.{MongoProvider, MongoSupport}
+import michalz.whattobuy.routes.{Api, JsonSupport, RoutingSupport, Static}
 import spray.routing.HttpServiceActor
 
 

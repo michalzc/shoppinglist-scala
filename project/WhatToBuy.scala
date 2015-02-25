@@ -3,14 +3,14 @@ import sbt.Keys._
 import sbt._
 import spray.revolver.RevolverPlugin.Revolver
 
-object ShoppingListBuild extends Build {
+object WhatToBuy extends Build {
 
   lazy val projectSettings =
     super.settings ++
       Revolver.settings ++
       graphSettings ++
       Seq(
-        name := "Shopping List Application",
+        name := "What To Buy",
         organization := "michalz",
         version := "0.1-SNAPSHOT",
         scalaVersion := "2.11.5",
@@ -22,7 +22,6 @@ object ShoppingListBuild extends Build {
           "-target:jvm-1.8",
           "-unchecked",
           "-encoding", "utf-8",
-//          "-Xlog-implicits",
           "-Xfatal-warnings"
         ),
         unmanagedResourceDirectories in Compile += file("src/main/webapp"),
@@ -36,16 +35,7 @@ object ShoppingListBuild extends Build {
           "org.apache.logging.log4j" % "log4j-api" % "2.1",
           "org.apache.logging.log4j" % "log4j-core" % "2.1",
           "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.1",
-//          "org.apache.logging.log4j" % "log4j-to-slf4j" % "2.1",
           "org.reactivemongo" %% "reactivemongo" % "0.10.5.0.akka23",
-//          "ch.qos.logback" % "logback-classic" % "1.1.2",
-//          "org.slf4j" % "log4j-over-slf4j" % "1.7.10",
-          //webjars
-//          "org.webjars" % "angularjs" % "1.3.13",
-//          "org.webjars" % "bootstrap" % "3.3.2-1",
-//          "org.webjars" % "jquery" % "2.1.3",
-
-
 
           //test dependencies
           "io.spray" %% "spray-testkit" % "1.3.2" % "test",
@@ -55,7 +45,6 @@ object ShoppingListBuild extends Build {
         ),
         resolvers ++= Seq(
           "Sonatype Releases" at "http://repo.typesafe.com/typesafe/releases/"
-          //          "Sonatype Snapshots" at "http://repo.typesafe.com/typesafe/snapshots/"
         ),
         dependencyOverrides += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 

@@ -1,17 +1,17 @@
-package michalz.shoppinglist
+package michalz.whattobuy
 
 import akka.actor.{ActorRef, ActorSystem}
 import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout
-import michalz.shoppinglist.repository.mongo.MongoProvider
-import michalz.shoppinglist.services.ShoppingListHttpService
+import michalz.whattobuy.repository.mongo.MongoProvider
+import michalz.whattobuy.services.ShoppingListHttpService
 import org.slf4j.LoggerFactory
 import spray.can.Http
 
 import scala.concurrent.duration._
 
-object ShoppingListApp extends App {
+object WhatToBuyApplication extends App {
   val logger = LoggerFactory.getLogger(this.getClass)
   implicit val system = ActorSystem("ShoppingListActorSystem")
   implicit val timeout = Timeout(5.seconds)

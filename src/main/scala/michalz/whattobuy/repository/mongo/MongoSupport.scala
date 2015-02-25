@@ -1,4 +1,4 @@
-package michalz.shoppinglist.repository.mongo
+package michalz.whattobuy.repository.mongo
 
 /**
  * Created by michal on 20.02.15.

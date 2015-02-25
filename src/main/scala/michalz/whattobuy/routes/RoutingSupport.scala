@@ -1,4 +1,4 @@
-package michalz.shoppinglist.routes
+package michalz.whattobuy.routes
 
 import akka.actor.Actor
 import akka.util.Timeout

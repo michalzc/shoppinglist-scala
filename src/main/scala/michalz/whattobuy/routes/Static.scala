@@ -1,4 +1,4 @@
-package michalz.shoppinglist.routes
+package michalz.whattobuy.routes
 
 import spray.routing.HttpService
 

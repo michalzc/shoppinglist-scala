@@ -1,4 +1,4 @@
-package michalz.shoppinglist.routes
+package michalz.whattobuy.routes
 
 import org.json4s.NoTypeHints
 import org.json4s.jackson.Serialization

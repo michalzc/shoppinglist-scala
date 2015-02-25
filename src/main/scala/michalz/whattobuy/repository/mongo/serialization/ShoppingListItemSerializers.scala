@@ -1,6 +1,6 @@
-package michalz.shoppinglist.repository.mongo.serialization
+package michalz.whattobuy.repository.mongo.serialization
 
-import michalz.shoppinglist.domain.ShoppingListItem
+import michalz.whattobuy.domain.ShoppingListItem
 import reactivemongo.bson.{BSONDocument, BSONDocumentReader}
 
 object ShoppingListItemSerializer {

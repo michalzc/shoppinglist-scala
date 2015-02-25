@@ -1,4 +1,4 @@
-package michalz.shoppinglist.domain
+package michalz.whattobuy.domain
 
 
 /**
