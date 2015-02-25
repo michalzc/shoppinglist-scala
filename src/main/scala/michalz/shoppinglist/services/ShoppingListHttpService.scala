@@ -1,8 +1,7 @@
 package michalz.shoppinglist.services
 
-import akka.actor.{ActorLogging, Props}
-import akka.event.LoggingAdapter
-import michalz.shoppinglist.repository.mongo.{MongoSupport, MongoProvider}
+import akka.actor.Props
+import michalz.shoppinglist.repository.mongo.{MongoProvider, MongoSupport}
 import michalz.shoppinglist.routes.{Api, JsonSupport, RoutingSupport, Static}
 import spray.routing.HttpServiceActor
 

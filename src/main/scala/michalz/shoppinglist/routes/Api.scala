@@ -8,7 +8,6 @@ import michalz.shoppinglist.repository.mongo.MongoSupport
 import michalz.shoppinglist.services.ShoppingListRepositoryActor
 import spray.routing.HttpService
 
-import scala.util.{Failure, Success}
 import scala.concurrent.duration._
 
 /**
@@ -21,19 +20,17 @@ trait Api { this: Actor with HttpService with MongoSupport with JsonSupport =>
   implicit val timeout = Timeout(5.seconds)
   implicit val ec = context.dispatcher
 
-  val apiRouting = {
-    pathPrefix("api") {
-      path("shoppinglist") {
-        get {
-          complete{
-            ask(listRepositoryActorRef, FindAll).mapTo[ShoppingLists].map {
-              result => result.lists
-            }
+  val apiRouting = pathPrefix("api") {
+    path("shoppinglist") {
+      get {
+        complete{
+          ask(listRepositoryActorRef, FindAll).mapTo[ShoppingLists].map {
+            result => result.lists
           }
         }
-      } ~ pathEndOrSingleSlash {
-        complete("There will be api!")
       }
+    } ~ pathEndOrSingleSlash {
+      complete("There will be api!")
     }
   }
 }
