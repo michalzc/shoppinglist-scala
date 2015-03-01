@@ -6,13 +6,13 @@ import michalz.whattobuy.routes.{Api, JsonSupport, RoutingSupport, Static}
 import spray.routing.HttpServiceActor
 
 
-class ShoppingListHttpService(mongo: MongoProvider) extends HttpServiceActor with Api with Static with RoutingSupport with MongoSupport with JsonSupport {
+class WhatToBuyHttpService(mongo: MongoProvider) extends HttpServiceActor with Api with Static with RoutingSupport with MongoSupport with JsonSupport {
 
   def mongoProvider: MongoProvider = mongo
 
   def receive: Receive = runRoute(staticRoute ~ apiRouting)
 }
 
-object ShoppingListHttpService {
-  def props(mongoProvider: MongoProvider) = Props(new ShoppingListHttpService(mongoProvider))
+object WhatToBuyHttpService {
+  def props(mongoProvider: MongoProvider) = Props(new WhatToBuyHttpService(mongoProvider))
 }

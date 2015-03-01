@@ -8,7 +8,5 @@ package michalz.whattobuy.domain
 object ShoppingListMessages {
 
   object FindAll
-
-  case class ShoppingLists(lists: List[ShoppingList])
-
+  case class FindOne(listId: String)
 }

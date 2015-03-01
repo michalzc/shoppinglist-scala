@@ -5,7 +5,7 @@ import akka.io.IO
 import akka.pattern.ask
 import akka.util.Timeout
 import michalz.whattobuy.repository.mongo.MongoProvider
-import michalz.whattobuy.services.ShoppingListHttpService
+import michalz.whattobuy.services.WhatToBuyHttpService
 import org.slf4j.LoggerFactory
 import spray.can.Http
 
@@ -18,7 +18,7 @@ object WhatToBuyApplication extends App {
 
   val mongoProvider = new MongoProvider
 
-  val shoppingListHttpService: ActorRef = system.actorOf(ShoppingListHttpService.props(mongoProvider), "shoppingListHttpService")
+  val shoppingListHttpService: ActorRef = system.actorOf(WhatToBuyHttpService.props(mongoProvider), "shoppingListHttpService")
 
 
   logger.info("Starting application")

@@ -14,7 +14,7 @@ object WhatToBuy extends Build {
         organization := "michalz",
         version := "0.1-SNAPSHOT",
         scalaVersion := "2.11.5",
-        mainClass in(Compile, run) := Some("michalz.shoppinglist.ShoppingListApp"),
+        mainClass in(Compile, run) := Some("michalz.whattobuy.WhatToBuyApplication"),
         scalacOptions ++= Seq(
           "-feature",
           "-deprecation",

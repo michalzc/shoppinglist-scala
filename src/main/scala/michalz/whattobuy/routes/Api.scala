@@ -3,7 +3,8 @@ package michalz.whattobuy.routes
 import akka.actor.Actor
 import akka.pattern.ask
 import akka.util.Timeout
-import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, ShoppingLists}
+import michalz.whattobuy.domain.ShoppingList
+import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, FindOne}
 import michalz.whattobuy.repository.mongo.MongoSupport
 import michalz.whattobuy.services.ShoppingListRepositoryActor
 import spray.routing.HttpService
@@ -24,9 +25,13 @@ trait Api { this: Actor with HttpService with MongoSupport with JsonSupport =>
     path("shoppinglist") {
       get {
         complete{
-          ask(listRepositoryActorRef, FindAll).mapTo[ShoppingLists].map {
-            result => result.lists
-          }
+          ask(listRepositoryActorRef, FindAll).mapTo[List[ShoppingList]]
+        }
+      }
+    } ~ path("shoppinglist" / Segment) { listId =>
+      get {
+        complete {
+          ask(listRepositoryActorRef, FindOne(listId)).mapTo[Option[ShoppingList]]
         }
       }
     } ~ pathEndOrSingleSlash {
