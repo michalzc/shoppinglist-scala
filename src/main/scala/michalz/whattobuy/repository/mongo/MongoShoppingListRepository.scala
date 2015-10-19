@@ -4,7 +4,8 @@ import akka.actor.ActorLogging
 import michalz.whattobuy.domain.ShoppingList
 import michalz.whattobuy.repository.ShoppingListRepository
 import reactivemongo.api.collections.default.BSONCollection
-import reactivemongo.bson.{BSONObjectID, BSONDocument}
+import reactivemongo.bson.{BSON, BSONObjectID, BSONDocument}
+import reactivemongo.core.commands.LastError
 
 import scala.concurrent.{Future, ExecutionContext}
 import scala.util.{Failure, Success}
@@ -33,4 +34,13 @@ trait MongoShoppingListRepository extends ShoppingListRepository {
       }
     }
   }
+
+  override def saveOne(shoppingList: ShoppingList) = {
+    val result: Future[LastError] = mongoCollection.insert(BSON.write(shoppingList))
+    result.onComplete {
+      case Success(lastError) => None
+      case Failure(lastError) => None
+    }
+  }
+
 }

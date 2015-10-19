@@ -4,7 +4,7 @@ import akka.actor.Actor
 import akka.pattern.ask
 import akka.util.Timeout
 import michalz.whattobuy.domain.ShoppingList
-import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, FindOne}
+import michalz.whattobuy.domain.ShoppingListMessages.{SaveOne, FindAll, FindOne}
 import michalz.whattobuy.repository.mongo.MongoSupport
 import michalz.whattobuy.services.ShoppingListRepositoryActor
 import spray.routing.HttpService
@@ -14,7 +14,8 @@ import scala.concurrent.duration._
 /**
  * Created by michal on 20.02.15.
  */
-trait Api { this: Actor with HttpService with MongoSupport with JsonSupport =>
+trait Api {
+  this: Actor with HttpService with MongoSupport with JsonSupport =>
 
   val listRepositoryActorRef = context.actorOf(ShoppingListRepositoryActor.props(mongoProvider), "listsRepository")
 
@@ -22,19 +23,31 @@ trait Api { this: Actor with HttpService with MongoSupport with JsonSupport =>
   implicit val ec = context.dispatcher
 
   val apiRouting = pathPrefix("api") {
-    path("shoppinglist") {
-      get {
-        complete{
-          ask(listRepositoryActorRef, FindAll).mapTo[List[ShoppingList]]
+
+    pathPrefix("shoppinglist") {
+      pathEndOrSingleSlash {
+        get {
+          complete {
+            ask(listRepositoryActorRef, FindAll).mapTo[List[ShoppingList]]
+          }
+        } ~
+        post {
+          entity(as[ShoppingList]) { shoppingList =>
+            complete {
+              ask(listRepositoryActorRef, SaveOne(shoppingList)).mapTo[ShoppingList]
+            }
+          }
+        }
+      } ~
+      path(Segment) { listId =>
+        get {
+          complete {
+            ask(listRepositoryActorRef, FindOne(listId)).mapTo[Option[ShoppingList]]
+          }
         }
       }
-    } ~ path("shoppinglist" / Segment) { listId =>
-      get {
-        complete {
-          ask(listRepositoryActorRef, FindOne(listId)).mapTo[Option[ShoppingList]]
-        }
-      }
-    } ~ pathEndOrSingleSlash {
+    } ~
+    pathEndOrSingleSlash {
       complete("There will be api!")
     }
   }

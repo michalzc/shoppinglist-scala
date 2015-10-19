@@ -9,4 +9,5 @@ object ShoppingListMessages {
 
   object FindAll
   case class FindOne(listId: String)
+  case class SaveOne(shoppingList: ShoppingList)
 }

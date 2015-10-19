@@ -11,6 +11,7 @@ import scala.concurrent.Future
 trait ShoppingListRepository {
   def findAll: Future[List[ShoppingList]]
   def findById(id: String): Future[Option[ShoppingList]]
+  def saveOne(shoppingList: ShoppingList)
 }
 
 

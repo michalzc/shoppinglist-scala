@@ -2,7 +2,7 @@ package michalz.whattobuy.services
 
 import akka.actor.{Actor, ActorLogging, Props}
 import akka.pattern.pipe
-import michalz.whattobuy.domain.ShoppingListMessages.{FindAll, FindOne}
+import michalz.whattobuy.domain.ShoppingListMessages.{SaveOne, FindAll, FindOne}
 import michalz.whattobuy.repository.mongo.{MongoProvider, MongoShoppingListRepository}
 
 /**
@@ -21,6 +21,9 @@ class ShoppingListRepositoryActor(mongoProvider: MongoProvider) extends Actor wi
 
     case FindOne(listId) =>
       findById(listId) pipeTo sender
+
+    case SaveOne(shoppingList) =>
+      None
   }
 
   log.debug("shoppingListsRepository created")
